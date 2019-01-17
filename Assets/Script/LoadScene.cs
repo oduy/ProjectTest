@@ -8,14 +8,25 @@ public class LoadScene : MonoBehaviour
     public float time = 2f;
     public int numscene = 1;
 
-    void Start()
-    {
-        StartCoroutine(Timedelay(time));
+    bool oneTime = false;
+
+    // void Start()
+    // {
+    //     StartCoroutine(Timedelay(time));
+    // }
+
+    void Update(){
+        if(!oneTime){
+            StartCoroutine(Timedelay(time));
+            oneTime = true;
+        }
     }
-    
+
     IEnumerator Timedelay(float time)
     {
         yield return new WaitForSeconds(time);
-        SceneManager.LoadScene(numscene);
+        Manager.CurrentState = Manager.State.GAMEPLAY;
+        print("a" + Manager.CurrentState);
     }
+
 }

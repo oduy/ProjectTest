@@ -10,24 +10,29 @@ public class DelayTime : MonoBehaviour
     public int Time = 10;
     public int numscene = 1;
 
-    void Start(){
-        if(text != null)
+    void Start()
+    {
+        if (text != null)
             text.text = Time.ToString();
-        StartCoroutine(Timedelay());
-
-        
     }
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)){
-            Time = 10;
-            if(text != null)
-            text.text = Time.ToString();
-        }
-        if(Time == 0)
+
+        if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene(numscene);
+            if (Manager.CurrentState == Manager.State.MENU)
+            {
+                StartCoroutine(Timedelay());
+                Manager.CurrentState = Manager.State.GAMEPLAY;
+            }
+            Time = 10;
+            if (text != null)
+                text.text = Time.ToString();
+        }
+        if (Time == 0)
+        {
+            //  Manager.CurrentState = Manager.State.START;
         }
     }
 
@@ -38,7 +43,8 @@ public class DelayTime : MonoBehaviour
         yield return new WaitForSeconds(1);
         Time--;
         text.text = Time.ToString();
-        if(Time > 0){
+        if (Time > 0)
+        {
             StartCoroutine(Timedelay());
         }
     }

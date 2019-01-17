@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: d90bba26a15f4cc4890c1923c4d8063e
   - enabled: 1
-    path: Assets/Scenes/DelayTime.unity
+    path: Assets/Scenes/GamePlay.unity
     guid: ef4c43964ddc0c74c834f9c0fcef7468
   m_configObjects: {}
