@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\DelayTime.cs" />
-     <Compile Include="Assets\Script\LoadScene.cs" />
      <Compile Include="Assets\Script\Manager.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/O Duy/Desktop/Github/ProjectTest/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
