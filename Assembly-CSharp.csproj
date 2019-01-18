@@ -53,8 +53,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\DelayTime.cs" />
+     <Compile Include="Assets\Script\FlappyBird\GameController.cs" />
+     <Compile Include="Assets\Script\FlappyBird\Player.cs" />
+     <Compile Include="Assets\Script\FlappyBird\ScrollingBackground.cs" />
+     <Compile Include="Assets\Script\FlappyBird\ScrollingColumn.cs" />
+     <Compile Include="Assets\Script\FlappyBird\TapToPlay.cs" />
      <Compile Include="Assets\Script\Manager.cs" />
+     <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\Bird.cs" />
+     <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\Column.cs" />
+     <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\ColumnPool.cs" />
+     <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\GameControl.cs" />
+     <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\RepeatingBackground.cs" />
+     <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\ScrollingObject.cs" />
+     <None Include="Assets\Sprites\Flappy Bird Style\_ReadMe.txt" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/O Duy/Desktop/Github/ProjectTest/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
