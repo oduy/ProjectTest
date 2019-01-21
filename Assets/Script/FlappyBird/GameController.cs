@@ -14,11 +14,12 @@ public class GameController : MonoBehaviour
         }
     }
     #endregion
-    
+
     public GameObject bntReplay;
     public GameObject Column;
     public float time = 2f;
     bool oneTime = false;
+
 
     //make score
     public Text text;
@@ -41,7 +42,7 @@ public class GameController : MonoBehaviour
             case STATE.START:{
                 startGame();
                 break;
-            }
+            }   
             case STATE.PLAY:{
                 playGame();
                 
@@ -54,6 +55,7 @@ public class GameController : MonoBehaviour
         }
         print(currentState);
     }
+
 
     void startGame(){
         score = 0;
@@ -93,9 +95,5 @@ public class GameController : MonoBehaviour
         Instantiate(Column, new Vector2(4, num), Quaternion.identity);
         if(currentState == STATE.PLAY)
             StartCoroutine(Clone(time));
-    }
-
-    private void ClickReplay(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
