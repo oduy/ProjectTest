@@ -22,8 +22,13 @@ public class GameController : MonoBehaviour
 
 
     //make score
-    public Text text;
     int score = 0;
+    public Text text;
+    //hight score
+    public Text hightScoreText;
+
+    //pause panel
+    public GameObject pausePanel;
 
     //state design
     public enum STATE{START, PLAY, END};
@@ -35,6 +40,7 @@ public class GameController : MonoBehaviour
 
     void Start(){
         bntReplay.SetActive(false);
+        pausePanel.SetActive(false);
     }
 
     void Update(){
@@ -75,19 +81,48 @@ public class GameController : MonoBehaviour
         Player.FindObjectOfType<Player>().CurrentState = Player.Bird.FLy;
 
         text.text = score.ToString();
+        if(score > PlayerPrefs.GetInt("HightScore")){
+            SaveHightScore.HightScore.saveScore(score); // save hight score
+        }
+
     }
 
     void endGame(){
         bntReplay.SetActive(true);
+        hightScoreText.text = SaveHightScore.HightScore.getScore().ToString();
         if(Input.GetMouseButtonDown(0)){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
     
+    #region pause game
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+    } 
+
+    public void ContinueGame()
+    {
+        Time.timeScale = 1;
+        pausePanel.SetActive(false);
+    }
+
+    public void LoadMenu(){
+        SceneManager.LoadScene(0);
+    }
+
+    public void Replay(){
+        ContinueGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    #endregion
+
+    #region clone colum
     void CloneColumn(){
         StartCoroutine(Clone(time));
     }
-
 
     IEnumerator Clone(float time){
         yield return new WaitForSeconds(time);
@@ -96,4 +131,5 @@ public class GameController : MonoBehaviour
         if(currentState == STATE.PLAY)
             StartCoroutine(Clone(time));
     }
+    #endregion
 }

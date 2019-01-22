@@ -6,12 +6,34 @@ using UnityEngine.UI;
 public class ScrollingColumn : MonoBehaviour
 {
     public float speed = 5f;
-    
+
+    public enum STAGEColumn{SCROLLING, STOP};
+    private STAGEColumn currentSTAGE= STAGEColumn.SCROLLING;
+
+    public STAGEColumn CurrentSTAGE { get => currentSTAGE; set => currentSTAGE = value; }
+
     void Update()
     {
+        
+        switch(CurrentSTAGE){
+            case STAGEColumn.SCROLLING:{
+                stageScrolling();
+                break;
+            }
+            case STAGEColumn.STOP:{
+
+                break;
+            }
+        }
+
+    }
+
+    void stageScrolling(){
         if(GameController.controller.CurrentState == GameController.STATE.PLAY)
             transform.Translate(Vector2.left * speed * Time.deltaTime);
-
+        else{
+            currentSTAGE= STAGEColumn.STOP;
+        }
     }
     
     void OnTriggerEnter2D(Collider2D other){

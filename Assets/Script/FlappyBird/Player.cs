@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
             transform.position = Vector2.zero;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.timeScale != 0)
         {
             anim.SetTrigger("Flap");
             rb2d.velocity = Vector2.zero;
