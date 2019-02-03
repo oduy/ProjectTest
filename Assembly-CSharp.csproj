@@ -78,6 +78,12 @@
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>C:/Users/O Duy/Desktop/Github/ProjectTest/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Editor">
+ <HintPath>C:/Users/O Duy/Desktop/Github/ProjectTest/Library/ScriptAssemblies/Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="XiaomiSupport">
+ <HintPath>C:/Users/O Duy/Desktop/Github/ProjectTest/Library/ScriptAssemblies/XiaomiSupport.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Users/O Duy/Desktop/Github/ProjectTest/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
