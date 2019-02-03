@@ -26,7 +26,8 @@ public class ScrollingBackground : MonoBehaviour
             rb2d.velocity = Vector2.zero;
         }
         
-        if(GameController.controller.CurrentState == GameController.STATE.PLAY)
+        if(GameController.controller.CurrentState == GameController.STATE.MENU ||
+            GameController.controller.CurrentState == GameController.STATE.PLAY)
             StartGame();
 
     }

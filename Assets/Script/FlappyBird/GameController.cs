@@ -15,7 +15,6 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
-    public GameObject bntReplay;
     public GameObject Column;
     public float time = 2f;
     bool oneTime = false;
@@ -31,15 +30,14 @@ public class GameController : MonoBehaviour
     public GameObject pausePanel;
 
     //state design
-    public enum STATE{MENU, START, PLAY, END};
-    private STATE currentState = STATE.START;
+    public enum STATE{MENU, PLAY, END};
+    private STATE currentState = STATE.MENU;
 
     //property 
     public STATE CurrentState { get => currentState; set => currentState = value; }
     public int Score { get => score; set => score = value; }
 
     void Start(){
-        bntReplay.SetActive(false);
         pausePanel.SetActive(false);
     }
 
@@ -49,17 +47,13 @@ public class GameController : MonoBehaviour
                 
                 break;
             }
-            case STATE.START:{
-                startGame();
-                break;
-            }   
             case STATE.PLAY:{
                 playGame();
                 
                 break;
             }
             case STATE.END:{
-                endGame();
+                //endGame();
                 break;
             }
         }
@@ -80,8 +74,6 @@ public class GameController : MonoBehaviour
             CloneColumn();
             oneTime = true;
         }
-        bntReplay.SetActive(false);
-        TapToPlay.FindObjectOfType<TapToPlay>().CurrentState = TapToPlay.stateTEXT.isFalse;
         Player.FindObjectOfType<Player>().CurrentState = Player.Bird.FLy;
 
         text.text = score.ToString();
@@ -92,7 +84,6 @@ public class GameController : MonoBehaviour
     }
 
     void endGame(){
-        bntReplay.SetActive(true);
         hightScoreText.text = SaveHightScore.HightScore.getScore().ToString();
         if(Input.GetMouseButtonDown(0)){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

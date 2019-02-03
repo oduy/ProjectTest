@@ -58,11 +58,11 @@
      <Compile Include="Assets\Script\FlappyBird\Player.cs" />
      <Compile Include="Assets\Script\FlappyBird\SaveHightScore.cs" />
      <Compile Include="Assets\Script\FlappyBird\ScrollingBackground.cs" />
-     <Compile Include="Assets\Script\FlappyBird\ScrollingBGMenu.cs" />
      <Compile Include="Assets\Script\FlappyBird\ScrollingColumn.cs" />
      <Compile Include="Assets\Script\FlappyBird\TapToPlay.cs" />
      <Compile Include="Assets\Script\Manager.cs" />
      <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\Bird.cs" />
+     <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\CanvasManager.cs" />
      <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\Column.cs" />
      <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\ColumnPool.cs" />
      <Compile Include="Assets\Sprites\Flappy Bird Style\Scripts\GameControl.cs" />
