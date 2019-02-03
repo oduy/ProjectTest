@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
     public GameObject pausePanel;
 
     //state design
-    public enum STATE{START, PLAY, END};
+    public enum STATE{MENU, START, PLAY, END};
     private STATE currentState = STATE.START;
 
     //property 
@@ -45,6 +45,10 @@ public class GameController : MonoBehaviour
 
     void Update(){
         switch(CurrentState){
+            case STATE.MENU:{
+                
+                break;
+            }
             case STATE.START:{
                 startGame();
                 break;
