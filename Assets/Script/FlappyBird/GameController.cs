@@ -15,31 +15,18 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
-    public GameObject Column;
-    public float time = 2f;
-    bool oneTime = false;
-
-
-    //make score
-    int score = 0;
+    [Header("Show Score and save high score")]    
     public Text text;
-    //hight score
     public Text hightScoreText;
+    int score = 0;
 
-    //pause panel
-    public GameObject pausePanel;
-
-    //state design
+    
     public enum STATE{MENU, PLAY, END};
     private STATE currentState = STATE.MENU;
 
     //property 
     public STATE CurrentState { get => currentState; set => currentState = value; }
     public int Score { get => score; set => score = value; }
-
-    void Start(){
-        pausePanel.SetActive(false);
-    }
 
     void Update(){
         switch(CurrentState){
@@ -53,78 +40,36 @@ public class GameController : MonoBehaviour
                 break;
             }
             case STATE.END:{
-                //endGame();
+                endGame();
                 break;
             }
         }
         print(currentState);
     }
 
-
-    void startGame(){
-        score = 0;
-        TapToPlay.FindObjectOfType<TapToPlay>().CurrentState = TapToPlay.stateTEXT.isTrue;
-        if(Input.GetMouseButtonDown(0)){
-            currentState = STATE.PLAY;
-        }
-    }
-
     void playGame(){
-        if(!oneTime){
-            CloneColumn();
-            oneTime = true;
-        }
+
+        //spawn column
+        ColumnManager.FindObjectOfType<ColumnManager>().Stage = ColumnManager.COLUMN.SPAWN;
         Player.FindObjectOfType<Player>().CurrentState = Player.Bird.FLy;
 
+        // save hight score
         text.text = score.ToString();
         if(score > PlayerPrefs.GetInt("HightScore")){
-            SaveHightScore.HightScore.saveScore(score); // save hight score
+            SaveHightScore.HightScore.saveScore(score); 
         }
 
     }
 
     void endGame(){
+        //reset score and show it
+        score = 0;
         hightScoreText.text = SaveHightScore.HightScore.getScore().ToString();
-        if(Input.GetMouseButtonDown(0)){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        
+        //stop spawn column
+        ColumnManager.FindObjectOfType<ColumnManager>().Stage = ColumnManager.COLUMN.NOTSPAWN;
     }
     
-    #region pause game
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
-        pausePanel.SetActive(true);
-    } 
+    
 
-    public void ContinueGame()
-    {
-        Time.timeScale = 1;
-        pausePanel.SetActive(false);
-    }
-
-    public void LoadMenu(){
-        SceneManager.LoadScene(0);
-    }
-
-    public void Replay(){
-        ContinueGame();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    #endregion
-
-    #region clone colum
-    void CloneColumn(){
-        StartCoroutine(Clone(time));
-    }
-
-    IEnumerator Clone(float time){
-        yield return new WaitForSeconds(time);
-        float num = Random.Range(-3f, 3f);
-        Instantiate(Column, new Vector2(4, num), Quaternion.identity);
-        if(currentState == STATE.PLAY)
-            StartCoroutine(Clone(time));
-    }
-    #endregion
 }

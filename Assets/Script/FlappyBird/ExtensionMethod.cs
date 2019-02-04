@@ -7,7 +7,7 @@ public static class ExtensionMethod
     public static void ResetTransformation(this Transform trans)
     {
         trans.position = Vector3.zero;
-        trans.localRotation = Quaternion.identity;
-        trans.localScale = new Vector3(1, 1, 1);
+        trans.rotation = Quaternion.Euler(0f,0f,0f);
+        Debug.Log(trans.rotation);
     }
 }

@@ -7,7 +7,7 @@ public class ScrollingColumn : MonoBehaviour
 {
     public float speed = 5f;
 
-    public enum STAGEColumn{SCROLLING, STOP};
+    public enum STAGEColumn{SCROLLING, STOP, DELETE};
     private STAGEColumn currentSTAGE= STAGEColumn.SCROLLING;
 
     public STAGEColumn CurrentSTAGE { get => currentSTAGE; set => currentSTAGE = value; }
@@ -24,18 +24,28 @@ public class ScrollingColumn : MonoBehaviour
 
                 break;
             }
+            case STAGEColumn.DELETE:{
+                Destroy(gameObject);
+                break;
+            }
         }
-
+        print(currentSTAGE);
+        
     }
 
     void stageScrolling(){
         if(GameController.controller.CurrentState == GameController.STATE.PLAY)
             transform.Translate(Vector2.left * speed * Time.deltaTime);
+        
         else{
             currentSTAGE= STAGEColumn.STOP;
         }
+
+        
     }
     
+
+
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.tag != "Player"){
             Destroy(gameObject);

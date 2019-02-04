@@ -41,11 +41,11 @@ public class Player : MonoBehaviour
                     break;
                 }
         }
-        print(currentState);
     }
 
     void BirdStand()
     {
+        transform.rotation = Quaternion.Euler(0f,0f,0f);
         rb2d.velocity = Vector2.zero;
         rb2d.isKinematic = true;
         
@@ -55,10 +55,10 @@ public class Player : MonoBehaviour
     {   
         if (!runOneBirdFly)
         {
-            rb2d.isKinematic = false;
             runOneBirdFly = true;
             transform.position = Vector2.zero;
         }
+        rb2d.isKinematic = false;
 
         if (Input.GetMouseButtonDown(0) && Time.timeScale != 0)
         {
