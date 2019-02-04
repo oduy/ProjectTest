@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
         rb2d.velocity = Vector2.zero;
         currentState = Bird.Die;
         GameController.controller.CurrentState = GameController.STATE.END;
+        CanvasManager.FindObjectOfType<CanvasManager>().CurSTAGE = CanvasManager.UISTAGE.GameOver;
         anim.SetTrigger("Die");
     }
 

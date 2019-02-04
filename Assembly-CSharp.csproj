@@ -53,8 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\FlappyBird\ExtensionMethod.cs" />
      <Compile Include="Assets\Script\FlappyBird\GameController.cs" />
-     <Compile Include="Assets\Script\FlappyBird\LoadScene.cs" />
      <Compile Include="Assets\Script\FlappyBird\Player.cs" />
      <Compile Include="Assets\Script\FlappyBird\SaveHightScore.cs" />
      <Compile Include="Assets\Script\FlappyBird\ScrollingBackground.cs" />

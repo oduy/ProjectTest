@@ -9,10 +9,14 @@ public class CanvasManager : MonoBehaviour // state canvas in game
     public GameObject UIInGame; // canvas ingame
     public GameObject UIGameOver; // canvas Gameover
 
+    [Header("Bird")]
+    public GameObject Bird;
     
 
     public enum UISTAGE {Menu, InGame, GameOver};
     private UISTAGE curSTAGE = UISTAGE.Menu;
+
+    public UISTAGE CurSTAGE { get => curSTAGE; set => curSTAGE = value; }
 
     void Start(){
         UIMenu.SetActive(false);
@@ -21,7 +25,7 @@ public class CanvasManager : MonoBehaviour // state canvas in game
     }
     
     void Update(){
-        switch(curSTAGE){
+        switch(CurSTAGE){
             case UISTAGE.Menu:{
                 FuncMenuStage();
                 break;
@@ -63,6 +67,15 @@ public class CanvasManager : MonoBehaviour // state canvas in game
             UIGameOver.SetActive(true);
             UIInGame.SetActive(false);
             UIMenu.SetActive(false);
+
+            if(Input.GetMouseButtonDown(0)){
+                GameController.controller.CurrentState = GameController.STATE.PLAY;
+                CurSTAGE = UISTAGE.InGame;
+
+                //reset 
+                Bird.transform.ResetTransformation();
+                Bird.GetComponent<Animator>().Rebind();
+            }
         }
     }
     #endregion
@@ -70,7 +83,7 @@ public class CanvasManager : MonoBehaviour // state canvas in game
     #region function of Button
     public void BtnPlayGame(){
         GameController.controller.CurrentState = GameController.STATE.PLAY;
-        curSTAGE = UISTAGE.InGame;
+        CurSTAGE = UISTAGE.InGame;
     }
 
     
